@@ -1336,7 +1336,8 @@ function generatePDF(){
   content.push({text:footerDisclaimer,fontSize:8,color:C.textMuted,alignment:'center',margin:[0,2,0,0]});
 
   const docDef={content,defaultStyle:{font:'Roboto',fontSize:10,color:C.navy},pageMargins:[30,30,30,30],pageSize:'A4'};
-  const filename=`${d.rego}_${d.make}_${d.model}.pdf`.replace(/\s+/g,'_');
+  const prefix = d.isCarGuys ? 'CarGuys' : d.custName.replace(/\s+/g,'');
+const filename = `${prefix}_${d.rego}_${d.make}_${d.model}.pdf`.replace(/\s+/g,'_');
   pdfMake.createPdf(docDef).download(filename);
 
   saveJobSnapshot(snap,total.toFixed(2));
